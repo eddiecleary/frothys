@@ -1,24 +1,48 @@
-import React from 'react'
-import Header from './header'
+import React from 'react';
+import styled from 'styled-components';
+import 'normalize.css';
+import Header from './Header';
+import Footer from './Footer';
+import GlobalStyles from '../styles/GlobalStyles';
+import Typography from '../styles/Typography';
+import bg from '../assets/images/fruits-bg.png';
 
-import '../styles/layout.css'
-import styles from './layout.module.css'
+const SiteContainer = styled.div`
+  padding: 15px;
+  padding-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 350px;
 
-const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle}) => (
-  <>
-    <Header siteTitle={siteTitle} onHideNav={onHideNav} onShowNav={onShowNav} showNav={showNav} />
-    <div className={styles.content}>{children}</div>
-    <footer className={styles.footer}>
-      <div className={styles.footerWrapper}>
-        <div className={styles.siteInfo}>
-          &copy; {new Date().getFullYear()}, Built with <a href='https://www.sanity.io'>Sanity</a>{' '}
-          &amp;
-          {` `}
-          <a href='https://www.gatsbyjs.org'>Gatsby</a>
-        </div>
-      </div>
-    </footer>
-  </>
-)
+  @media (min-width: 768px) {
+    max-width: 680px;
+    margin-top: 35px;
+    border: 3px dashed var(--black);
+    padding: 0;
+    
+    &::before {
+      content: '';
+      background-image: url(${bg});
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      left: 0px;
+      opacity: 0.15;
+    }
+  }
+`;
 
-export default Layout
+export default function Layout({ children }) {
+  return (
+    <>
+      <GlobalStyles />
+      <Typography />
+      <SiteContainer>
+        <Header />
+        {children}
+      </SiteContainer>
+      <Footer />
+    </>
+  )
+}
