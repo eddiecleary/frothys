@@ -28,9 +28,17 @@ const Typography = createGlobalStyle`
   }
   h2 {
     font-size: 2.2rem;
+
+    @media (min-width: 768px) {
+      font-size: 2.7rem;
+    }
   }
   h3 {
     font-size: 1.8rem;
+
+    @media (min-width: 768px) {
+      font-size: 2.3rem;
+    }
   }
 `;
 

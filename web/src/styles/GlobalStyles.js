@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import bg from '../assets/images/fruits-bg.png'
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -13,11 +12,16 @@ const GlobalStyles = createGlobalStyle`
     --white: #fff;   
   }
   html {
-    /* background-image: url(${bg}); */
     font-size: 62.5%;
+    height: 100%;
   }
   body {
     font-size: 1.6rem;
+    position: relative;
+
+    @media (min-width: 768px) {
+      font-size: 1.8rem;
+    }
   }
   button, .btn {
     background: var(--pink);

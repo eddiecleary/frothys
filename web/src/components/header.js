@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
-import { gsap } from 'gsap';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import styled, { createGlobalStyle } from 'styled-components';
 import Logo from '../assets/images/frothys-logo.svg';
 import { Squash as Hamburger } from 'hamburger-react';
-import { scrollTrigger } from 'gsap';
 import SocialIcons from '../components/SocialIcons';
+import bg from '../assets/images/fruits-bg.svg';
 
 export default function Header () {
 
@@ -22,7 +19,10 @@ export default function Header () {
           <a href="#" className="logo"><img src={Logo} alt="Frothy's Logo"/><h1>Frothy'<span>s</span></h1></a>
           <a href="#">Blog</a>
           <a href="#">Contact</a>
-          <div className="bgOverlay"></div>
+          <div className="bgOverlay">
+            <div className="innerborder">
+            </div>
+          </div>
           <a href="#" className="btn white">Delivery Company</a>
           <a href="#" className="btn black">Delivery Company</a>
           <SocialIcons />
@@ -111,6 +111,19 @@ const HeaderStyles = styled.header`
       position: absolute !important;
       right: 10vw;
     }
+
+    .bgOverlay {
+      position: fixed;
+      background-color: var(--pink);
+      height: 100vh;
+      width: 100vw;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 
   /* Opened Nav styles */
@@ -152,7 +165,10 @@ const HeaderStyles = styled.header`
 
       /* Massive BG Overlay when Nav opened */
       .bgOverlay {
-        position: fixed;
+        opacity: 1;
+        transform: scale(1);
+        z-index: 5;
+        /* position: fixed;
         background-color: var(--pink);
         z-index: 5;
         height: 100vh;
@@ -161,6 +177,32 @@ const HeaderStyles = styled.header`
         left: 0;
         right: 0;
         bottom: 0;
+        opacity: 1; */
+
+        &::before {
+          content: '';
+          background-image: url(${bg});
+          background-repeat: repeat;
+          background-size: 150px;
+          position: absolute;
+          top: 0px;
+          bottom: 0px;
+          right: 0px;
+          left: 0px;
+          opacity: 1;
+        }
+
+        .innerborder {
+          border: 3px dashed white;
+          position: absolute;
+          top: 35px;
+          left: calc((100vw - 680px) / 2);
+          right: calc((100vw - 680px) / 2);
+          bottom: 35px;
+          background-color: var(--pink);
+          opacity: 1;
+          margin: 0;
+        }
       }
 
       .hamburger-react { 

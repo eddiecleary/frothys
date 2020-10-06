@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from './Footer';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
-import bg from '../assets/images/fruits-bg.png';
+import bg from '../assets/images/fruits-bg.svg';
 
 const SiteContainer = styled.div`
   padding: 15px;
@@ -18,17 +18,24 @@ const SiteContainer = styled.div`
     max-width: 680px;
     margin-top: 35px;
     border: 3px dashed var(--black);
+    border-bottom: 0;
     padding: 0;
+    overflow: hidden;
+    z-index: 7;
     
     &::before {
       content: '';
       background-image: url(${bg});
+      background-repeat: repeat;
+      background-size: 150px;
+      filter: invert(1);
       position: absolute;
-      top: 0px;
+      top: -35px;
       bottom: 0px;
       right: 0px;
       left: 0px;
-      opacity: 0.15;
+      opacity: 0.55;
+
     }
   }
 `;

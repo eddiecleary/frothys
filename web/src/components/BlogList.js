@@ -7,9 +7,11 @@ function BlogPost({post}) {
   return(
     <StyledBlogPost>
       <Img fluid={post.mainImage.asset.fluid} />
-      <h3>{post.title}</h3>
-      <time dateTime={post.publishedAt}>{post.publishedAt}</time>
-      <p>{post._rawExcerpt[0].children[0].text}</p>
+      <div className="textWrap">
+        <h3>{post.title}</h3>
+        <time dateTime={post.publishedAt}>{post.publishedAt}</time>
+        <p>{post._rawExcerpt[0].children[0].text}</p>
+      </div>
     </StyledBlogPost>
   )
 }
@@ -73,5 +75,43 @@ const StyledBlogPost = styled.article`
     max-width: 320px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    align-items: center;
+
+    .gatsby-image-wrapper {
+      flex-basis: 35%;
+      margin: 0;
+      max-height: 275px;
+    }
+
+    .textWrap {
+      flex-basis: 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      h3 {
+        width: 100%;
+        text-align: left;
+        margin-top: 0;
+      }
+
+      time {
+        order: 3;
+        align-self: flex-end;
+      }
+
+      p {
+        max-width: 100%;
+        margin: 0;
+        margin-top: 2rem;
+        text-align: left;
+      }
+    }
   }
 `

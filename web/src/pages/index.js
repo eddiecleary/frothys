@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef, useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
@@ -8,8 +8,55 @@ import BlogList from '../components/BlogList';
 import Hours from '../components/Hours';
 import Address from '../components/Address';
 import { FaMapMarkerAlt } from 'react-icons/fa';
+import svg from '../assets/images/fruits-bg.svg';
+import { gsap, Power3 } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import contactBg from '../assets/images/contact-bg.jpg'
+
 
 export default function Index({data}) {
+  let fruitsImgRef = useRef();
+  let bgRef = useRef();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger)
+      gsap.core.globals("ScrollTrigger", ScrollTrigger)
+    }
+
+    gsap.to(
+      bgRef,{
+        backgroundPosition: "0% 100%",
+        scrollTrigger: {
+          trigger: bgRef,
+          start: "top bottom",
+          toggleActions: "restart none none none",
+          end: "top 60%",
+          scrub: 1,
+        }
+      }
+    );
+    
+    ScrollTrigger.matchMedia({
+      "(min-width: 768px)": function() {
+        gsap.to(
+          fruitsImgRef, {
+            opacity: 1,
+            x: -780,
+            scrollTrigger: {
+              trigger: fruitsImgRef,
+              start: "top 55%",
+              end: "bottom 50%",
+              toggleActions: "restart none none none",
+              scrub: true,
+            }
+          }
+        )
+      }
+    });    
+  }, []);
+
+  
 
   const heroImgSources = [
     {
@@ -22,10 +69,21 @@ export default function Index({data}) {
     }
   ];
 
+  const fruitsImgSources = [
+    {
+      ...data.fruitsMobile.childImageSharp.fixed,
+      media: '(max-width: 767px)'
+    },
+    {
+      ...data.fruitsDesktop.childImageSharp.fixed,
+      media: '(max-width: 768px)'
+    }
+  ]
+
   return (
     <>
       <StyledHero>
-        <Img fluid={heroImgSources} fluid={heroImgSources} />
+        <Img fluid={heroImgSources} />
         <div className="textWrap">
           <h1>World Famous Smoothies.<br /> Your Favorite Fruits are a Delicious Treat!</h1>
           <div className="btnWrap">
@@ -35,8 +93,10 @@ export default function Index({data}) {
         </div>
       </StyledHero>
       <StyledFruits>
-        <h2>Build Your Own:</h2>
-        <Img fluid={data.fruits.childImageSharp.fluid} />
+        <h2>Pick Any Fruit:</h2>
+        <div className="fruits" ref={el => {fruitsImgRef = el}}>
+          <Img fixed={fruitsImgSources} />
+        </div>
       </StyledFruits>
       <StyledGallery>
         <h2>Enjoy!</h2>
@@ -54,16 +114,20 @@ export default function Index({data}) {
         </div>
       </StyledOrderNow>
       <StyledContactInfo>
-        <Hours />
-        <Address />
-        <article>
+        <div className="top" ref={el => {bgRef = el}}>
           <h2>Visit Us</h2>
-          <a href="https://www.google.com/maps/search/?api=1&query=New+York+NY"><Img fluid={data.map.nodes[0].childFile.childImageSharp.fluid} /></a>
-          <div className="btnWrap">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=New+York+NY&dir_action=navigate" className="btn blue">Google Maps <FaMapMarkerAlt/></a>
-            <a href="http://maps.apple.com/?daddr=New+York+NY&dirflg=d&t=h" className="btn black">Apple Maps <FaMapMarkerAlt /></a>
-          </div>
-        </article>
+          <Hours />
+          <Address />
+        </div>
+        <div className="bottom">
+        	<article>
+        	  <a href="https://www.google.com/maps/search/?api=1&query=New+York+NY"><Img fluid={data.map.nodes[0].childFile.childImageSharp.fluid} /></a>
+        	  <div className="btnWrap">
+        	    <a href="https://www.google.com/maps/dir/?api=1&destination=New+York+NY&dir_action=navigate" className="btn blue">Google Maps <FaMapMarkerAlt/></a>
+        	    <a href="http://maps.apple.com/?daddr=New+York+NY&dirflg=d&t=h" className="btn black">Apple Maps <FaMapMarkerAlt /></a>
+        	  </div>
+        	</article>
+        </div>
       </StyledContactInfo>
       <StyledBlog>
         <h2>Recent Blog Posts:</h2>
@@ -131,7 +195,7 @@ const StyledHero = styled.section`
       justify-content: center;
 
       a:first-of-type {
-        margin-right: 3.5rem;
+        margin-right: 2.5rem;
       }
     }
 
@@ -144,18 +208,30 @@ const StyledHero = styled.section`
 `
 
 const StyledFruits = styled.section`
-  margin-top: 10rem;
+  padding-top: 10rem;
+  background-color: var(--white);
+  text-align: center;
 
-  .gatsby-image-wrapper {
-    margin-top: 4rem;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
+  @media(min-width: 768px) {
+    position: relative;
   }
+
+  .fruits {
+    margin-top: 4rem;
+
+    .gatsby-image-wrapper {
+      @media(min-width: 768px) {
+        margin: 3rem;
+        margin-right: 0;
+        opacity: 1;
+      }
+    }
+  }
+
 `
 
 const StyledGallery = styled.section`
-  margin-top: 10rem;
+  padding-top: 10rem;
 
   .imgs {
     margin-top: 4rem;
@@ -164,10 +240,23 @@ const StyledGallery = styled.section`
       margin-top: 3rem;
     }
   }
+
+  @media(min-width: 768px) {
+    position: relative;
+    background-color: var(--white);
+
+  }
 `
 
 const StyledMenu = styled.section`
-  margin-top: 6rem;
+  padding-top: 6rem;
+  background-color: var(--white);
+  position: relative;
+
+  @media (min-width: 768px) {
+    padding-left: 10rem;
+    padding-right: 10rem;
+  }
 
   table {
     width: 100%;
@@ -206,10 +295,20 @@ const StyledMenu = styled.section`
   }
 `
 const StyledOrderNow = styled.section`
-  margin-top: 10rem;
+  padding-top: 10rem;
+  background-color: var(--white);
+  position: relative;
+  padding-left: 10rem;
+  padding-right: 10rem;
 
   h2 {
     margin-top: 3rem;
+  }
+
+  .gatsby-image-wrapper {
+    max-width: 375px;
+    margin: 0 auto;
+    margin-bottom: 5rem;
   }
 
   .btnWrap {
@@ -217,6 +316,11 @@ const StyledOrderNow = styled.section`
     flex-direction: column;
     align-items: center;
     padding-top: 2rem;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
     
     a {
       display: inline-block;
@@ -227,7 +331,9 @@ const StyledOrderNow = styled.section`
 `
 
 const StyledContactInfo = styled.section`
-  margin-top: 10rem;
+  padding-top: 10rem;
+  background-color: var(--white);
+  position: relative;
 
   .gatsby-image-wrapper {
     margin-top: 4rem;
@@ -253,17 +359,79 @@ const StyledContactInfo = styled.section`
       margin-top: 2rem;
     }
   }
+
+  @media (min-width: 768px) {
+    color: var(--white);
+
+    article{
+      padding: 7rem 0;
+      margin-top: 0;
+
+      &:last-of-type {
+        padding: 0;
+      }
+    }
+
+    address {
+      color: var(--white);
+    }
+
+    .top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-image: url(${contactBg});
+      background-size: 100%;
+      background-position: 0% 0%;
+      background-repeat: no-repeat;
+
+      h2 {
+        flex-basis: 100%;
+        padding-top: 7rem
+      }
+
+      > * {
+        flex-basis: 50%;
+      }
+    }
+
+    .bottom {
+      padding-bottom: 3rem;
+      
+      article {
+        margin-top: 0;
+
+        .gatsby-image-wrapper {
+          margin-top: 0;
+          height: 420px;
+        }
+
+        .btnWrap {
+          flex-direction: row;
+          justify-content: center;
+
+          .btn:first-of-type {
+            margin-right: 3rem;
+          }
+        }
+      }
+    }
+  }
 `
 
 const StyledBlog = styled.section`
-  margin-top: 10rem;
+  padding-top: 12rem;
   padding-bottom: 10rem;
+  position: relative;
+  background-color: var(--white);
+
+  h2 {
+    margin-bottom: 7rem;
+  }
 
   article:not(:first-of-type) {
     margin-top: 7rem;
   }
-
-
 `;
 
 export const query = graphql`
@@ -282,10 +450,17 @@ export const query = graphql`
         }
       }
     }
-    fruits: file(relativePath: {eq: "assets/images/fruits-mobile.jpg"}){
+    fruitsMobile: file(relativePath: {eq: "assets/images/fruits-mobile.jpg"}){
       childImageSharp{
-        fluid(quality:30,maxWidth:300){
-          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        fixed(width:300){
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+    fruitsDesktop: file(relativePath: {eq: "assets/images/fruits-desktop.png"}){
+      childImageSharp{
+        fixed(width:1400){
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
         }
       }
     }

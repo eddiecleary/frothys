@@ -24,7 +24,7 @@ const StyledGallery = styled.div`
   > * {
     margin-bottom: 3rem;
     display: none;
-    /* Sets all images to be hidden */
+    /* Sets all images to be hidden (for mobile) */
   }
 
   /* "Unhides" the first 3 images on mobile */
@@ -35,11 +35,20 @@ const StyledGallery = styled.div`
       display: block;
     }
   }
-
   /* Show all of the gallery images on tablet and above */
-  @media (min-width: 768px) {
-    > .gatsby-image-wrapper {
+  @media(min-width: 768px) {
+    > * {
       display: block;
+    }
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .gatsby-image-wrapper {
+      flex-basis: 31%;
     }
   }
 `
