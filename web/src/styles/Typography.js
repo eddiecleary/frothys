@@ -4,7 +4,9 @@ import font from '../assets/fonts/shortbaby.woff';
 const Typography = createGlobalStyle`
   @font-face {
     font-family: ShortBaby;
+    font-display: swap;
     src: url(${font});
+
   }
   html {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

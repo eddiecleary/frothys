@@ -22,10 +22,8 @@ export default function Fruits() {
   let fruitsImgRef = useRef();
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger)
-      gsap.core.globals("ScrollTrigger", ScrollTrigger)
-    }
+    gsap.registerPlugin(ScrollTrigger)
+    gsap.core.globals("ScrollTrigger", ScrollTrigger)
     
     ScrollTrigger.matchMedia({
       "(min-width: 768px)": function() {

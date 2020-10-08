@@ -27,10 +27,8 @@ export default function Contact() {
   let bgRef = useRef();
 
     useEffect(() => {
-      if (typeof window !== 'undefined') {
-        gsap.registerPlugin(ScrollTrigger)
-        gsap.core.globals("ScrollTrigger", ScrollTrigger)
-      }
+      gsap.registerPlugin(ScrollTrigger)
+      gsap.core.globals("ScrollTrigger", ScrollTrigger)
 
       gsap.to(
         bgRef,{

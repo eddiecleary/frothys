@@ -6,10 +6,12 @@ import Menu from '../components/index/Menu';
 import Contact from '../components/index/Contact';
 import OrderNow from '../components/index/OrderNow';
 import Blog from '../components/index/Blog';
+import SEO from '../components/SEO';
 
 export default function Index({data}) {
   return (
     <>
+      <SEO title="Home" />
       <Hero />
       <Fruits />
       <Gallery />
