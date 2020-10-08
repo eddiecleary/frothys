@@ -1,4 +1,4 @@
-import { GrGallery as icon } from 'react-icons/Gr'
+import { GrGallery as icon } from 'react-icons/gr'
 
 export default {
   name: 'gallery',
