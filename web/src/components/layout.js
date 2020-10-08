@@ -7,6 +7,20 @@ import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import bg from '../assets/images/fruits-bg.svg';
 
+export default function Layout({ children }) {
+  return (
+    <>
+      <GlobalStyles />
+      <Typography />
+      <SiteContainer>
+        <Header />
+        {children}
+      </SiteContainer>
+      <Footer />
+    </>
+  )
+}
+
 const SiteContainer = styled.div`
   padding: 15px;
   padding-bottom: 0;
@@ -49,17 +63,3 @@ const SiteContainer = styled.div`
     max-width: 105rem;
   }
 `;
-
-export default function Layout({ children }) {
-  return (
-    <>
-      <GlobalStyles />
-      <Typography />
-      <SiteContainer>
-        <Header />
-        {children}
-      </SiteContainer>
-      <Footer />
-    </>
-  )
-}
