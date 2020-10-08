@@ -1,5 +1,4 @@
 import S from '@sanity/desk-tool/structure-builder'
-// import MdSettings from 'react-icons/lib/md/settings'
 import {
   MdDescription,
   MdSettings

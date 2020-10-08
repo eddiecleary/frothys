@@ -1,4 +1,4 @@
-import { GiPineapple as icon } from 'react-icons/Gi'
+import { GiPineapple as icon } from 'react-icons/gi'
 export default {
   name: 'menu',
   title: 'Menu',
