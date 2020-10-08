@@ -1,15 +1,15 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
 export default function OrderNow() {
   
   const {delivery} = useStaticQuery(query);
 
   return(
-    <StyledOrderNow>
-      <Img fluid={delivery.childImageSharp.fluid} />
+    <StyledOrderNow id="order">
+      <Img alt="Backside view of a man next to a motorcycle with an Uber Eats backpack on, getting ready to deliver food." fluid={delivery.childImageSharp.fluid} />
       <div className="textWrap">
         <h2>Order Online Now!</h2>
         <p>I'm baby enamel pin palo santo banh mi kinfolk tousled. Beard gochujang microdosing banjo lyft wolf. Bushwick sriracha shoreditch, craft beer raclette portland unicorn scenester banh mi.</p>

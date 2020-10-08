@@ -21,7 +21,7 @@ export default function Hours() {
       <table>
         <thead>
           <tr>
-            <th colSpan="2"><h3>Hours</h3></th>
+            <th className="h3" colSpan="2">Hours</th>
           </tr>
         </thead>
         <tbody>

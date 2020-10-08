@@ -18,7 +18,7 @@ function Menu({menu}) {
       <table className="menu">
         <thead>
           <tr>
-            <th><img src={menu.icon.asset.url} /><h3>{menu.name}</h3></th>
+            <th><img alt={menu.icon.alt} src={menu.icon.asset.url} /><h3>{menu.name}</h3></th>
           </tr>
         </thead>
         <tbody>

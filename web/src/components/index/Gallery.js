@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import GalleryList from '../GalleryList';
 
 export default function Gallery() {
@@ -40,8 +40,9 @@ export const query = graphql`
   query {
     heroGallery: sanityGallery(name: {eq: "Hero Gallery"}) {
       gallery {
+        alt
         asset {
-          fluid(maxWidth:500){
+          fluid(maxWidth: 500) {
             ...GatsbySanityImageFluid
           }
           id

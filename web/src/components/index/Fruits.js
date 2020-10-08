@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -79,7 +79,7 @@ export default function Fruits() {
     <StyledFruits>
       <h2>Pick Any Fruit:</h2>
       <div className="fruits" ref={el => {fruitsImgRef = el}}>
-        <Img fluid={fruitsImgSources} />
+        <Img alt="A collection of fruit illustrations, including: blueberries, pineapple, apple, avocado, orange, banana, strawberry, mango, apricot, watermelon, kiwi, and cherry." fluid={fruitsImgSources} />
       </div>
     </StyledFruits>
   )

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import MenusList from '../MenusList';
 
 export default function Menu() {
@@ -8,7 +8,7 @@ export default function Menu() {
   const {menus} = useStaticQuery(query);
 
   return (
-    <StyledMenu id="foodmenu">
+    <StyledMenu id="menu">
       <MenusList menus={menus.edges} />
     </StyledMenu>
   )
@@ -39,6 +39,7 @@ export const query = graphql`
         node {
           name
           icon {
+            alt
             asset {
               url
             }

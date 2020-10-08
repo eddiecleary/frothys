@@ -5,9 +5,9 @@ import { FaFacebook,  FaInstagram, FaTwitter } from 'react-icons/fa';
 export default function SocialIcons({color}) {
   return (
     <StyledIcons color={color} className="social-icons">
-      <a href="#"><FaFacebook /></a>
-      <a href="#"><FaInstagram /></a>
-      <a href="#"><FaTwitter /></a>
+      <a href="https://www.facebook.com"><FaFacebook aria-label="Frothy's Facebook Page"/></a>
+      <a alt="Link to Frothy's Instagram Page" href="https://www.instagram.com"><FaInstagram aria-label="Frothy's Instagram Page" /></a>
+      <a alt="Link to Frothy's Twitter Page" href="https://www.twitter.com"><FaTwitter aria-label="Frothy's Twitter Page" /></a>
     </StyledIcons>
   )
 }

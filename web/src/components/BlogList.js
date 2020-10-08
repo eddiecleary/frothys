@@ -6,7 +6,7 @@ import Img from 'gatsby-image';
 function BlogPost({post}) {
   return(
     <StyledBlogPost>
-      <Img fluid={post.mainImage.asset.fluid} />
+      <Img alt={post.mainImage.alt} fluid={post.mainImage.asset.fluid} />
       <div className="textWrap">
         <h3>{post.title}</h3>
         <time dateTime={post.publishedAt}>{post.publishedAt}</time>

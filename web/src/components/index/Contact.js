@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import contactBg from '../../assets/images/contact-bg.jpg';
 import Hours from '../Hours';
 import Address from '../Address';
@@ -57,7 +57,7 @@ export default function Contact() {
       </div>
       <div className="bottom">
         <article>
-          <a href="https://www.google.com/maps/search/?api=1&query=New+York+NY"><Img fluid={mapImgSources} /></a>
+          <a href="https://www.google.com/maps/search/?api=1&query=New+York+NY"><Img alt="Map of New York, NY showing location of Frothy's restaurant next to New York City Hall." fluid={mapImgSources} /></a>
           <div className="btnWrap">
             <a href="https://www.google.com/maps/dir/?api=1&destination=New+York+NY&dir_action=navigate" className="btn blue">Google Maps <FaMapMarkerAlt/></a>
             <a href="http://maps.apple.com/?daddr=New+York+NY&dirflg=d&t=h" className="btn black">Apple Maps <FaMapMarkerAlt /></a>
@@ -164,15 +164,11 @@ const StyledContactInfo = styled.section`
           .btn {
             margin: 0;
             transform: translateY(-50%);
-            border: 3px dashed var(--black);
+            border: 3px dashed var(--white);
           }
 
           .btn:first-of-type {
             margin-right: 3rem;
-          }
-
-          .btn:last-of-type {
-            border-color: var(--white);
           }
         }
       }

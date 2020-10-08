@@ -2,12 +2,14 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --pink: #ef476f;
+    /* --pink: #ef476f; */
+    /* --pink: #AD0950; */
+    --pink: #cc3366;
     --yellow: #ffd166;
-    --green: #06d6a0;
+    --green: #00cc66;
     --lightblue: #118ab2;
     --darkblue: #073b4c;
-    --red: #FF0000;
+    --red: #cc3333;
     --black: #000;
     --white: #fff;   
   }
@@ -54,7 +56,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     &.blue {
-      background: #4285F4;
+      background: #3366cc;
       color: var(--white);
     }
   }

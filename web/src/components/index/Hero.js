@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 export default function Hero() {
@@ -19,12 +19,12 @@ export default function Hero() {
 
   return(
     <StyledHero>
-      <Img fluid={heroImgSources} />
+      <Img alt="A hand holding a glass mug filled with a strawberry smoothie and topped with whipped cream." fluid={heroImgSources} />
       <div className="textWrap">
         <h1>World Famous Smoothies.<br /> Your Favorite Fruits are a Delicious Treat!</h1>
         <div className="btnWrap">
-          <a href="#" className="btn pink center">View Menu</a>
-          <a href="#" className="btn yellow center">Order Now</a>
+          <a href="#menu" className="btn pink center">View Menu</a>
+          <a href="#order" className="btn yellow center">Order Now</a>
         </div>
       </div>
     </StyledHero>

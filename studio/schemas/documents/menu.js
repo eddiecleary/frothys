@@ -12,8 +12,10 @@ export default {
     },
     {
       name: 'icon',
+      type: 'icon',
       title: 'Icon',
-      type: 'image'
+      description: 'Add an icon for the menu',
+      of: [{type: 'icon'}]
     },
     {
       name: 'items',

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useStaticQuery } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import BlogList from '../BlogList';
 
 export default function Blog() {
@@ -52,6 +52,7 @@ export const query = graphql`
         }
         publishedAt(formatString: "MMM Do YYYY")
         mainImage {
+          alt
           asset {
             fluid(maxWidth:150) {
               ...GatsbySanityImageFluid

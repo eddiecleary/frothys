@@ -8,7 +8,7 @@ export default function GalleryList({imgs}) {
     <>
       <StyledGalleryList>
         {imgs.map((img) => (
-          <Img key={img.asset.id} fluid={img.asset.fluid} />
+          <Img alt={img.alt} key={img.asset.id} fluid={img.asset.fluid} />
         ))}
       </StyledGalleryList>
     </>

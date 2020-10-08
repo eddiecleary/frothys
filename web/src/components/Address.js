@@ -7,7 +7,7 @@ export default function Address() {
     <StyledAddress>
       <a href="https://www.google.com/maps/search/?api=1&query=New+York+NY">
         <address>
-          <h3>Address</h3>
+          <p className="h3">Address</p>
           <p>1123 Address St.</p>
           <p>Town City, ST 45891</p>
           <p>Next to Landmark</p>

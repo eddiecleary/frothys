@@ -11,7 +11,7 @@ const Typography = createGlobalStyle`
     color: var(--darkblue);
     letter-spacing: 1.25px;
   }
-  h1,h2,h3,h4,h5,h6 {
+  h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {
     font-weight: normal;
     font-family: ShortBaby, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
@@ -41,7 +41,8 @@ const Typography = createGlobalStyle`
 
 
   }
-  h3 {
+  h3,
+  .h3 {
     font-size: 2.1rem;
 
     @media(min-width: 414px) {

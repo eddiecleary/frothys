@@ -76,7 +76,7 @@ export default function Header () {
       <HeaderStyles className={isOpen && !isDesktop ? 'open' : ''}>
         {bannerText && <Banner text={bannerText} />}
         <nav>
-          <a href="#foodmenu" onClick={() => setOpen(false)}>Menu</a>
+          <a href="#menu" onClick={() => setOpen(false)}>Menu</a>
           <a href="#location" onClick={() => setOpen(false)}>Location</a>
           <a href="/" className="logo" onClick={() => setOpen(false)}><img src={Logo} alt="Frothy's Logo"/><h1>Frothy'<span>s</span></h1></a>
           <a href="#blog" onClick={() => setOpen(false)}>Blog</a>

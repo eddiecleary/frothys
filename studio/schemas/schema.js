@@ -17,6 +17,7 @@ import excerptPortableText from './objects/excerptPortableText'
 import mainImage from './objects/mainImage'
 import menuItem from './objects/menuItem'
 import hours from './objects/hours'
+import icon from './objects/icon'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -36,7 +37,8 @@ export default createSchema({
     gallery,
     menu,
     menuItem,
-    hours
+    hours,
+    icon
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
   ])
