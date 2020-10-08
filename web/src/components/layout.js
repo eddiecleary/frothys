@@ -15,13 +15,15 @@ const SiteContainer = styled.div`
   max-width: 350px;
 
   @media (min-width: 768px) {
-    max-width: 680px;
+    width: 89%;
+    max-width: 80rem;
     margin-top: 35px;
     border: 3px dashed var(--black);
     border-bottom: 0;
     padding: 0;
     overflow: hidden;
     z-index: 7;
+    box-sizing: border-box;
     
     &::before {
       content: '';
@@ -37,6 +39,14 @@ const SiteContainer = styled.div`
       opacity: 0.55;
 
     }
+  }
+
+  @media (min-width: 992px) {
+    max-width: 90rem;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 105rem;
   }
 `;
 

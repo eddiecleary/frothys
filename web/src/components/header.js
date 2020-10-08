@@ -1,24 +1,86 @@
-import React, {useState} from 'react';
+import React, { useState, useLayoutEffect, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Logo from '../assets/images/frothys-logo.svg';
 import { Squash as Hamburger } from 'hamburger-react';
 import SocialIcons from '../components/SocialIcons';
 import bg from '../assets/images/fruits-bg.svg';
+import { useMediaPredicate } from 'react-media-hook';
+import Banner from '../components/Banner';
+import sanityClient from '../../client-config';
+
+function debounce(fn, ms) {
+  let timer;
+  return () => {
+    clearTimeout(timer) 
+    timer = setTimeout(() => {
+      timer = null;
+      fn.apply(this, arguments)
+    }, ms)
+  }
+}
 
 export default function Header () {
 
   const [isOpen, setOpen] = useState(false);
+  const [bannerText, setBannerText] = useState(false);
+
+  const isDesktop = useMediaPredicate("(min-width: 992px)");
+
+  const gql = String.raw;
+
+  // useEffect(() => {
+  //     fetch(sanityClient.graphql.url, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         query: String.raw`
+  //           query {
+  //             allSiteSettings{
+  //               banner
+  //             }
+  //           }
+  //         `,
+  //       }),
+  //     })
+  //       .then((res) => res.json())
+  //       .then((res) => {
+  //         if (res.data.allSiteSettings[0].banner){
+  //           setBannerText(res.data.allSiteSettings[0].banner)
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  // }, []);
+
+  // Close nav menu drawer if window size > 992px
+  useLayoutEffect(() => {
+    const dbHandleResize = debounce(function handleResize() {
+      if (isDesktop) {
+        setOpen(false);
+      }
+    }, 1000);
+  
+    window.addEventListener('resize', dbHandleResize)
+
+    return () => {
+      window.removeEventListener('resize', dbHandleResize)
+    }
+  });
 
   return (
     <>
-      {isOpen && <GlobalStylesNavToggle />}
-      <HeaderStyles className={isOpen ? 'open' : ''}>
+      {isOpen && !isDesktop && <GlobalStylesNavToggle />}
+      <HeaderStyles className={isOpen && !isDesktop ? 'open' : ''}>
+        {bannerText && <Banner text={bannerText} />}
         <nav>
-          <a href="#">Menu</a>
-          <a href="#">Location</a>
-          <a href="#" className="logo"><img src={Logo} alt="Frothy's Logo"/><h1>Frothy'<span>s</span></h1></a>
-          <a href="#">Blog</a>
-          <a href="#">Contact</a>
+          <a href="#foodmenu" onClick={() => setOpen(false)}>Menu</a>
+          <a href="#location" onClick={() => setOpen(false)}>Location</a>
+          <a href="/" className="logo" onClick={() => setOpen(false)}><img src={Logo} alt="Frothy's Logo"/><h1>Frothy'<span>s</span></h1></a>
+          <a href="#blog" onClick={() => setOpen(false)}>Blog</a>
+          <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
           <div className="bgOverlay">
             <div className="innerborder">
             </div>
@@ -56,13 +118,13 @@ const HeaderStyles = styled.header`
     margin-left: 0;
     margin-right: 0;
     width: 100%;
-    padding-top: 15px;
   }
 
   /* Unopened Nav Styled */
   nav {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     position: relative;
     padding-left: 10vw;
     padding-right: 10vw;
@@ -98,6 +160,8 @@ const HeaderStyles = styled.header`
 
       img {
         width: 100%;
+        width: 6rem;
+        height: 6.2rem;
       }
     }
 
@@ -107,7 +171,7 @@ const HeaderStyles = styled.header`
 
     .hamburger-react {
       z-index: 6;
-      top: 1rem;
+      top: 1rem; 
       position: absolute !important;
       right: 10vw;
     }
@@ -135,7 +199,6 @@ const HeaderStyles = styled.header`
       flex-direction: column;
       height: auto;
       justify-content: flex-start;
-      max-width: 90vw;
       margin-left: auto;
       margin-right: auto;
 
@@ -168,20 +231,10 @@ const HeaderStyles = styled.header`
         opacity: 1;
         transform: scale(1);
         z-index: 5;
-        /* position: fixed;
-        background-color: var(--pink);
-        z-index: 5;
-        height: 100vh;
-        width: 100vw;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 1; */
 
         &::before {
           content: '';
-          background-image: url(${bg});
+          
           background-repeat: repeat;
           background-size: 150px;
           position: absolute;
@@ -193,19 +246,90 @@ const HeaderStyles = styled.header`
         }
 
         .innerborder {
-          border: 3px dashed white;
+          
           position: absolute;
           top: 35px;
-          left: calc((100vw - 680px) / 2);
-          right: calc((100vw - 680px) / 2);
           bottom: 35px;
           background-color: var(--pink);
           opacity: 1;
           margin: 0;
         }
       }
+    }
+  }
 
-      .hamburger-react { 
+  @media (min-width: 768px) {
+    nav {
+      width: 89%;
+      max-width: 80rem;
+      padding: 0;
+      padding-top: 1.5rem;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: space-between;
+
+      a {
+        font-size: 2.7rem;
+      }
+
+      .logo {
+        left: 0;
+      }
+
+      .hamburger-react {
+        right: 0;
+        top: 2.5rem;
+      }
+    }
+
+    .bgOverlay {
+
+      &::before {
+        background-image: url(${bg});
+      }
+
+      .innerborder {
+        width: 89%;
+        max-width: 80rem;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 3px dashed white;
+      }
+    }
+  }
+
+  @media (min-width: 992px) {
+
+    nav {
+      height: auto;
+      padding-top: 3rem;
+
+      a {
+        opacity: 1;
+        display: initial;
+        color: var(--black);
+
+        &:hover {
+          color: var(--pink);
+        }
+
+        &.logo {
+          position: static;
+          max-width: 100%;
+
+          img {
+            max-width: 8rem;
+          }
+        }
+
+        &.btn {
+          display: none;
+        }
+      }
+
+      .hamburger-react {
+        display: none;
+        opacity: 0;
       }
     }
   }

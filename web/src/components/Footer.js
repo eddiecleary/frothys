@@ -8,21 +8,23 @@ import bg from '../assets/images/fruits-bg.svg';
 
 export default function Footer () {
   return (
-    <StyledFooter>
+    <StyledFooter id="contact">
       <div className="footerbg"></div>
       <div className="innerborder">
-        <div className="toprow">
-          <a href="#" className="logo"><img src={Logo} alt="Frothy's Logo"/><h1>Frothy's</h1></a>
-          <SocialIcons color="var(--white)"/>
-        </div>
-        <div className="midrow">
-          <Hours />
-          <Address />
-        </div>
-        <div className="lowrow">
-          <p>Icons from <a href="https://www.flaticon.com/authors/monkik">monkik</a> @ <a href="https://www.flaticon.com">flaticon.com</a></p>
-          <p>Icons from <a href="https://www.flaticon.com/authors/freepik">freepik</a> @ <a href="https://www.flaticon.com">flaticon.com</a></p>
-          <p className="copyright">Copyright Eddie Cleary &copy; {new Date().getFullYear()}</p>
+        <div className="content">
+          <div className="toprow">
+            <a href="#" className="logo"><img src={Logo} alt="Frothy's Logo"/><h1>Frothy's</h1></a>
+            <SocialIcons color="var(--white)"/>
+          </div>
+          <div className="midrow">
+            <Hours />
+            <Address />
+          </div>
+          <div className="lowrow">
+            <p>Icons from <a href="https://www.flaticon.com/authors/monkik">monkik</a> @ <a href="https://www.flaticon.com">flaticon.com</a></p>
+            <p>Icons from <a href="https://www.flaticon.com/authors/freepik">freepik</a> @ <a href="https://www.flaticon.com">flaticon.com</a></p>
+            <p className="copyright">Copyright Eddie Cleary &copy; {new Date().getFullYear()}</p>
+          </div>
         </div>
       </div>
     </StyledFooter>
@@ -34,6 +36,7 @@ const StyledFooter = styled.footer`
   color: var(--white);
   position: relative;
   width: 100%;
+  padding-bottom: 2rem;
 
   a {
     color: var(--white);
@@ -106,42 +109,60 @@ const StyledFooter = styled.footer`
 
     .innerborder {
       position: relative;
-      /* left: calc((100vw - 686px) / 2);
-      right: calc((100vw - 686px) / 2); */
-      margin-left: 4.1rem;
-      margin-right: 4.1rem;
-      padding-bottom: 35px;
+      margin: 0 auto;
       top: 0;
-      bottom: 35px;
-      max-width: 100%;         
+      bottom: 3.5rem;
+      width: 89%; 
+      /* These 2 values coincide with the Layout component width */
+      max-width: 80rem;        
       border: 3px dashed white;
       border-top: 0;
       background-color: var(--black);
       opacity: 1;
-      padding: 0 3rem;
+      box-sizing: border-box;
+
+      .content {
+        width: 89%;
+        max-width: 80rem;
+        margin: 0 auto;
+        padding-bottom: 2rem;
+
+        .toprow {
+          flex-direction: row;
+          justify-content: space-between;
+
+          .logo {
+            transform: initial;
+          }
+          
+          .social-icons {
+            margin: 0;
+          }
+        }
+
+        .midrow {
+          display: flex;
+          justify-content: center;
+          padding: 3rem 0;
+
+          > * {
+            flex-basis: 50%;
+          }
+        }
+      }
+    }   
+  }
+
+  @media (min-width: 992px) {
+
+    .innerborder {
+      max-width: 90rem;
     }
   }
 
-  .toprow {
-    flex-direction: row;
-    justify-content: space-between;
-
-    .logo {
-      transform: initial;
-    }
-    
-    .social-icons {
-      margin: 0;
-    }
-  }
-
-  .midrow {
-    display: flex;
-    justify-content: center;
-    padding: 3rem 0;
-
-    > * {
-      flex-basis: 50%;
+  @media (min-width: 1200px) {
+    .innerborder {
+      max-width: 105rem;
     }
   }
 `

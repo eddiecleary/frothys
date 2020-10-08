@@ -22,23 +22,37 @@ const Typography = createGlobalStyle`
   h1 {
     font-size: 2.2rem;
 
-    @media(min-width: 768px) {
-      font-size: 2.7rem;
+    @media(min-width: 414px) {
+      font-size: 2.5rem;
     }
+
+    @media(min-width: 768px) {
+      font-size: 3.1rem;
+    }
+
+
   }
   h2 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
 
-    @media (min-width: 768px) {
+    @media(min-width: 414px) {
       font-size: 2.7rem;
     }
+
+
   }
   h3 {
-    font-size: 1.8rem;
+    font-size: 2.1rem;
+
+    @media(min-width: 414px) {
+      font-size: 2.4rem;
+    }
 
     @media (min-width: 768px) {
-      font-size: 2.3rem;
+      font-size: 2.5rem;
     }
+
+
   }
 `;
 

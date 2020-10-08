@@ -61,5 +61,12 @@ const StyledHours = styled.article`
       }
     }
   }
+
+  @media (min-width: 768px) {
+    
+    table {
+      max-width: 250px;
+    }
+  }
 `
 

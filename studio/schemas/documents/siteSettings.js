@@ -31,6 +31,12 @@ export default {
       title: 'Store Hours',
       description: 'Update Store Hours Here',
       of: [{type: 'hours'}]
+    },
+    {
+      name: 'banner',
+      type: 'string',
+      title: 'Site Banner',
+      description: 'Enter a short description to show a popup on your homepage. i.e. Change of store hours or sales alerts. Delete this text remove the banner',
     }
   ]
 }

@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
-export default function Gallery({imgs}) {
+export default function GalleryList({imgs}) {
 
   return (
-    <StyledGallery>
-      {imgs.map((img) => (
-        <Img key={img.asset.id} fluid={img.asset.fluid} />
-      ))}
-    </StyledGallery>
+    <>
+      <StyledGalleryList>
+        {imgs.map((img) => (
+          <Img key={img.asset.id} fluid={img.asset.fluid} />
+        ))}
+      </StyledGalleryList>
+    </>
   )
 }
 
-const StyledGallery = styled.div`
+const StyledGalleryList = styled.div`
   margin-top: 4rem;
+  margin-left: 1%;
+  margin-right: 1%;
 
   .gatsby-image-wrapper {
     margin-left: auto;
@@ -37,18 +41,25 @@ const StyledGallery = styled.div`
   }
   /* Show all of the gallery images on tablet and above */
   @media(min-width: 768px) {
-    > * {
-      display: block;
-    }
-  }
-
-  @media (min-width: 768px) {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 
+    > * {
+      display: block;
+      margin-bottom: 2rem;
+    }
+
     .gatsby-image-wrapper {
       flex-basis: 31%;
+      margin: 1%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .gatsby-image-wrapper {
+      flex-basis: 29%;
+      margin: 2%;
     }
   }
 `

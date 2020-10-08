@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
   html {
     font-size: 62.5%;
     height: 100%;
+    scroll-behavior: smooth;
   }
   body {
     font-size: 1.6rem;
