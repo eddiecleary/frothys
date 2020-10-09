@@ -32,7 +32,7 @@ const StyledGalleryList = styled.div`
   }
 
   /* "Unhides" the first 3 images on mobile */
-  @media(max-width: 767px) {
+  @media(max-width: 767.99px) {
     > :nth-child(1),
     > :nth-child(2),
     > :nth-child(3) {

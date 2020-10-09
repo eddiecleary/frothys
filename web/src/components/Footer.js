@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../assets/images/frothys-logo.png';
 import SocialIcons from '../components/SocialIcons';
 import Hours from './Hours';
 import Address from './Address';

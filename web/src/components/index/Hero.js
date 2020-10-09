@@ -92,7 +92,12 @@ const StyledHero = styled.section`
     margin: 0;
 
     .gatsby-image-wrapper {
-      width: 50%;
+      flex-basis: 50%;
+      max-width: 229px;
+      
+      img {
+        max-height: 360px;
+      }
     }
 
     .textWrap {
@@ -110,17 +115,29 @@ const StyledHero = styled.section`
   }
 
   @media (min-width: 992px) {
+    padding-bottom: 0rem;
 
     .gatsby-image-wrapper {
-      max-width: 35rem;
+      flex-basis: 50%;
+      width: 300px;
+      max-width: 300px;
+      
+      img {
+        height: 470px;
+        max-height: 470px;
+      }
     }
-
-    padding-bottom: 0rem;
   }
 
   @media (min-width: 1200px) {
     .gatsby-image-wrapper {
-      max-width: 40rem;
+      width: 350px;
+      max-width: 350px;
+
+      img {
+        height: 550px;
+        max-height: 550px;
+      }
     }
   }
 `

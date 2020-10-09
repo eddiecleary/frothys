@@ -16,7 +16,7 @@ export default function Contact() {
   const mapImgSources = [
     {
       ...mapMobile.nodes[0].childFile.childImageSharp.fluid,
-      media: '(max-width: 767px)'
+      media: '(max-width: 767.99px)'
     },
     {
       ...mapDesktop.nodes[0].childFile.childImageSharp.fluid,

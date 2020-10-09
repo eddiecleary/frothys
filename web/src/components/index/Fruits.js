@@ -11,7 +11,7 @@ export default function Fruits() {
   const fruitsImgSources = [
     {
       ...fruitsMobile.childImageSharp.fluid,
-      media: '(max-width: 767px)'
+      media: '(max-width: 767.99px)'
     },
     {
       ...fruitsDesktop.childImageSharp.fluid,
