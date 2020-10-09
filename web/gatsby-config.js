@@ -50,6 +50,7 @@ module.exports = {
         overlayDrafts: !isProd
       }
     },
+    'gatsby-source-sanity-transform-images',
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {

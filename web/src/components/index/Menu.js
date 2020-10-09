@@ -41,7 +41,7 @@ export const query = graphql`
           icon {
             alt
             asset {
-              url
+              fixed
             }
           }
           items {
