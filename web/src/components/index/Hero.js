@@ -90,6 +90,7 @@ const StyledHero = styled.section`
     left: initial;
     right: initial;
     margin: 0;
+    min-height: 398px;
 
     .gatsby-image-wrapper {
       flex-basis: 50%;
@@ -116,6 +117,7 @@ const StyledHero = styled.section`
 
   @media (min-width: 992px) {
     padding-bottom: 0rem;
+    min-height: 509px;
 
     .gatsby-image-wrapper {
       flex-basis: 50%;
@@ -130,6 +132,8 @@ const StyledHero = styled.section`
   }
 
   @media (min-width: 1200px) {
+    min-height: 587px;
+
     .gatsby-image-wrapper {
       width: 350px;
       max-width: 350px;
