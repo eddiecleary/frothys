@@ -3,8 +3,16 @@ export default {
   title: 'Hours',
   type: 'object',
   fields: [
-      {name: 'day', type: 'string', title: 'Day'},
-      {name: 'hours', type: 'string', title: 'Hours'}
+      {
+        name: 'day', 
+        title: 'Day',
+        type: 'string'
+      },
+      {
+        name: 'hours', 
+        title: 'Hours',
+        type: 'string'
+      }
     ],
   preview: {
     select: {

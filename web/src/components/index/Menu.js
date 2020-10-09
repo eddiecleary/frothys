@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import MenusList from '../MenusList';
@@ -38,18 +38,21 @@ export const query = graphql`
       edges {
         node {
           name
-          icon {
-            alt
-            asset {
-              url
-            }
-          }
           items {
             name
             price
             _key
           }
           id
+          icon {
+            alt
+            asset {
+              id
+              fixed(width: 50) {
+                ...GatsbySanityImageFixed
+              }
+            }
+          }
         }
       }
     }

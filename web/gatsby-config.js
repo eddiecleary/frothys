@@ -12,7 +12,8 @@ module.exports = {
     title: "Frothy's",
     description: 'this is a description',
     author: 'Eddie Cleary',
-    siteUrl: 'https://frothys.eddiecleary.com'
+    siteUrl: 'https://frothys.eddiecleary.com',
+    image: 'og.jpg'
   },
   plugins: [
     'gatsby-plugin-postcss',
@@ -24,7 +25,6 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-robots-txt',
     'gatsby-plugin-sitemap',
-    // 'gatsby-plugin-preload-link-crossorigin',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
@@ -34,7 +34,7 @@ module.exports = {
         background_color: '#ffffff',
         theme_color: '#cc3366',
         display: 'standalone',
-        icon: 'src/assets/images/frothys-logo.svg',
+        icon: 'src/assets/images/frothys-logo.png',
         icon_options: {
           purpose: 'any maskable'
         }

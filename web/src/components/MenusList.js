@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import formatMoney from '../utils/formatMoney';
+import Img from 'gatsby-image';
 
 export default function MenusList({ menus }) {
   return (
@@ -18,8 +19,7 @@ function Menu({menu}) {
       <table className="menu">
         <thead>
           <tr>
-            {/* <img alt={menu.icon.alt} src={menu.icon.asset.url} /> */}
-            <th><h3>{menu.name}</h3></th>
+            <th className="h3"><Img alt={menu.icon.alt} fixed={menu.icon.asset.fixed} />{menu.name}</th>
           </tr>
         </thead>
         <tbody>
@@ -78,9 +78,10 @@ const MenuStyles = styled.article`
     justify-content: center;
     margin-bottom: 3rem;
 
-      img {
+      .gatsby-image-wrapper {
         width: 45px;
-        margin-right: 0.7rem;
+        height: 45px;
+        margin-right: 1rem;
       }
     }
 

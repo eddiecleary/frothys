@@ -10,12 +10,10 @@
 
 :root {
   /* Brand colors */
-  /*
-  --brand-primary: var(--brand-primary);
+  --brand-primary: #cc3366;
   --brand-primary--inverted: #ffffff;
   --brand-secondary: #ffa800;
-  --brand-secondary--inverted: #3c1609;
-  */
+  --brand-secondary--inverted: #073b4c;
   /* Typography */
   /*
   --font-family-sans-serif: 'Nunito';
@@ -23,8 +21,9 @@
   --text-color: var(--brand-secondary--inverted);
   */
   /* Main Navigation */
-  /*
-  --main-navigation-color: var(--brand-secondary);
-  --main-navigation-color--inverted: var(--brand-secondary--inverted);
-  */
+  
+  /* --main-navigation-color: #cc3366;
+  --main-navigation-color--inverted: #ffffff; */
+ 
 }
+

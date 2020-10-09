@@ -1,13 +1,14 @@
-import React, { useState, useLayoutEffect, useEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import Logo from '../assets/images/frothys-logo.svg';
+import { useStaticQuery, graphql } from 'gatsby';
 import { Squash as Hamburger } from 'hamburger-react';
 import SocialIcons from '../components/SocialIcons';
 import bg from '../assets/images/fruits-bg.svg';
 import { useMediaPredicate } from 'react-media-hook';
 import Banner from '../components/Banner';
-import sanityClient from '../../client-config';
+import Img from 'gatsby-image';
 
+// Used for checking dom every 1 second instead of every .00001ms speed of light :)
 function debounce(fn, ms) {
   let timer;
   return () => {
@@ -20,40 +21,19 @@ function debounce(fn, ms) {
 }
 
 export default function Header () {
-
+  // Load in site banner (if user set 1)
+  const data = useStaticQuery(query);
+  
+  // Used for opening nav menu
   const [isOpen, setOpen] = useState(false);
   const [bannerText, setBannerText] = useState(false);
-
+  
+  if (data.sanitySiteSettings.banner) {
+    setBannerText(data.sanitySiteSettings.banner.trim())
+  }
+  
+  // Used for checking if nav menu should close when browser > 992px width
   const isDesktop = useMediaPredicate("(min-width: 992px)");
-
-  const gql = String.raw;
-
-  // useEffect(() => {
-  //     fetch(sanityClient.graphql.url, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         query: String.raw`
-  //           query {
-  //             allSiteSettings{
-  //               banner
-  //             }
-  //           }
-  //         `,
-  //       }),
-  //     })
-  //       .then((res) => res.json())
-  //       .then((res) => {
-  //         if (res.data.allSiteSettings[0].banner){
-  //           setBannerText(res.data.allSiteSettings[0].banner)
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  // }, []);
 
   // Close nav menu drawer if window size > 992px
   useLayoutEffect(() => {
@@ -78,7 +58,9 @@ export default function Header () {
         <nav>
           <a href="#menu" onClick={() => setOpen(false)}>Menu</a>
           <a href="#location" onClick={() => setOpen(false)}>Location</a>
-          <a href="/" className="logo" onClick={() => setOpen(false)}><img src={Logo} alt="Frothy's Logo"/><h1>Frothy'<span>s</span></h1></a>
+          <a href="/" className="logo" onClick={() => setOpen(false)}>
+            <Img fluid={data.logo.childImageSharp.fluid} alt="Frothy's Logo" />
+            <h1>Frothy'<span>s</span></h1></a>
           <a href="#blog" onClick={() => setOpen(false)}>Blog</a>
           <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
           <div className="bgOverlay">
@@ -138,13 +120,16 @@ const HeaderStyles = styled.header`
 
     .logo {
       opacity: 1;
-      display: block;
-      max-width: 6rem; 
       position: absolute;
       display: flex;
       font-size: 1.5rem;
       align-items: center;
       left: 10vw;
+
+      .gatsby-image-wrapper {
+        width: 6rem;
+        height: 6.2rem;
+      }
       
       /* Creates text "Frothy's" span used for spacing the "s" at end of Frothy's */
       h1 {
@@ -160,8 +145,8 @@ const HeaderStyles = styled.header`
 
       img {
         width: 100%;
-        width: 6rem;
-        height: 6.2rem;
+        width: 60px;
+        height: 62px;
       }
     }
 
@@ -211,6 +196,7 @@ const HeaderStyles = styled.header`
 
         &.logo {
           display: flex;
+          margin-bottom: 0;
 
           h1 {
             color: var(--white);
@@ -318,7 +304,9 @@ const HeaderStyles = styled.header`
           max-width: 100%;
 
           img {
-            max-width: 8rem;
+            max-width: 80px;
+            width: 80px;
+            height: 82px;
           }
         }
 
@@ -334,3 +322,18 @@ const HeaderStyles = styled.header`
     }
   }
 `;
+
+export const query = graphql`
+  query {
+    sanitySiteSettings{
+      banner
+    }
+    logo: file(relativePath: {eq: "assets/images/frothys-logo.png"}){
+      childImageSharp{
+        fluid(quality:70,maxWidth:140){
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
+  }
+`

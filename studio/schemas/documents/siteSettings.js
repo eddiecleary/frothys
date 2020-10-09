@@ -5,27 +5,6 @@ export default {
   __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
   fields: [
     {
-      name: 'title',
-      type: 'string',
-      title: 'Title'
-    },
-    {
-      name: 'description',
-      type: 'text',
-      title: 'Description',
-      description: 'Describe your blog for search engines and social media.'
-    },
-    {
-      name: 'keywords',
-      type: 'array',
-      title: 'Keywords',
-      description: 'Add keywords that describes your blog.',
-      of: [{type: 'string'}],
-      options: {
-        layout: 'tags'
-      }
-    },
-    {
       name: 'hours',
       type: 'array',
       title: 'Store Hours',
@@ -36,7 +15,7 @@ export default {
       name: 'banner',
       type: 'string',
       title: 'Site Banner',
-      description: 'Enter a short description to show a popup on your homepage. i.e. Change of store hours or sales alerts. Delete this text remove the banner',
+      description: 'Add a popup site banner to homepage for important news and updates. Delete this text to remove the banner. Must re-deploy site for changes to take effect.',
     }
   ]
 }

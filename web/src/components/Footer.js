@@ -1,19 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../assets/images/frothys-logo.svg';
+import Logo from '../assets/images/frothys-logo.png';
 import SocialIcons from '../components/SocialIcons';
 import Hours from './Hours';
 import Address from './Address';
 import bg from '../assets/images/fruits-bg.svg';
+import { graphql, useStaticQuery } from 'gatsby';
+import Img from 'gatsby-image';
 
 export default function Footer () {
+  const data = useStaticQuery(query);
   return (
     <StyledFooter id="contact">
       <div className="footerbg"></div>
       <div className="innerborder">
         <div className="content">
           <div className="toprow">
-            <a href="#" className="logo"><img src={Logo} alt="Frothy's Logo"/><h1>Frothy's</h1></a>
+            <a href="#" className="logo">
+              <Img fluid={data.logo.childImageSharp.fluid} />
+              <h1>Frothy's</h1>
+            </a>
             <SocialIcons color="var(--white)"/>
           </div>
           <div className="midrow">
@@ -51,9 +57,13 @@ const StyledFooter = styled.footer`
     .logo {
       display: flex;
       align-items: center;
-      max-width: 8rem; 
+      justify-content: center;
       font-size: 3rem;
-      transform: translateX(-50%);
+
+      .gatsby-image-wrapper {
+        width: 6rem;
+        height: 6rem;
+      }
 
       h1 {
         margin-top: 0.7rem;
@@ -132,7 +142,7 @@ const StyledFooter = styled.footer`
           justify-content: space-between;
 
           .logo {
-            transform: initial;
+            /* transform: initial; */
           }
           
           .social-icons {
@@ -163,6 +173,18 @@ const StyledFooter = styled.footer`
   @media (min-width: 1200px) {
     .innerborder {
       max-width: 105rem;
+    }
+  }
+`
+
+export const query = graphql`
+  query{
+    logo: file(relativePath: {eq: "assets/images/frothys-logo.png"}){
+      childImageSharp{
+        fluid(quality:70,maxWidth:140){
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
     }
   }
 `
