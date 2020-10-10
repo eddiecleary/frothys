@@ -10,7 +10,7 @@ const isProd = process.env.NODE_ENV === 'production'
 module.exports = {
   siteMetadata: {
     title: "Frothy's",
-    description: 'this is a description',
+    description: "Frothy's creates delicious fruit smoothies for everyone to enjoy. Try our endless combinations of world famous smoothies today!",
     author: 'Eddie Cleary',
     siteUrl: 'https://frothys.eddiecleary.com',
     image: 'og.jpg'
