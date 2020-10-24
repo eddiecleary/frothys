@@ -1,20 +1,20 @@
-import React, { useState, useLayoutEffect } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
-import { useStaticQuery, graphql } from 'gatsby';
-import { Squash as Hamburger } from 'hamburger-react';
-import SocialIcons from '../components/SocialIcons';
-import bg from '../assets/images/fruits-bg.svg';
-import { useMediaPredicate } from 'react-media-hook';
-import Banner from '../components/Banner';
-import Img from 'gatsby-image';
+import React, {useState, useLayoutEffect} from 'react'
+import styled, {createGlobalStyle} from 'styled-components'
+import {useStaticQuery, graphql, Link} from 'gatsby'
+import {Squash as Hamburger} from 'hamburger-react'
+import SocialIcons from '../components/SocialIcons'
+import bg from '../assets/images/fruits-bg.svg'
+import {useMediaPredicate} from 'react-media-hook'
+import Banner from '../components/Banner'
+import Img from 'gatsby-image'
 
 // Used for checking dom every 1 second instead of every .00001ms speed of light :)
-function debounce(fn, ms) {
-  let timer;
+function debounce (fn, ms) {
+  let timer
   return () => {
-    clearTimeout(timer) 
+    clearTimeout(timer)
     timer = setTimeout(() => {
-      timer = null;
+      timer = null
       fn.apply(this, arguments)
     }, ms)
   }
@@ -22,33 +22,37 @@ function debounce(fn, ms) {
 
 export default function Header () {
   // Load in site banner (if user set 1)
-  const data = useStaticQuery(query);
-  
+  const data = useStaticQuery(query)
+
   // Used for opening nav menu
-  const [isOpen, setOpen] = useState(false);
-  const [bannerText, setBannerText] = useState(false);
-  
+  const [isOpen, setOpen] = useState(false)
+  const [bannerText, setBannerText] = useState(false)
+
   if (data.sanitySiteSettings.banner) {
     setBannerText(data.sanitySiteSettings.banner.trim())
   }
-  
+
   // Used for checking if nav menu should close when browser > 992px width
-  const isDesktop = useMediaPredicate("(min-width: 992px)");
+  const isDesktop = useMediaPredicate('(min-width: 992px)')
 
   // Close nav menu drawer if window size > 992px
   useLayoutEffect(() => {
-    const dbHandleResize = debounce(function handleResize() {
+    const dbHandleResize = debounce(function handleResize () {
       if (isDesktop) {
-        setOpen(false);
+        setOpen(false)
       }
-    }, 1000);
-  
+    }, 1000)
+
     window.addEventListener('resize', dbHandleResize)
 
     return () => {
       window.removeEventListener('resize', dbHandleResize)
     }
-  });
+  })
+
+  const handleClick = () => {
+    setOpen(false)
+  }
 
   return (
     <>
@@ -56,21 +60,20 @@ export default function Header () {
       <HeaderStyles className={isOpen && !isDesktop ? 'open' : ''}>
         {bannerText && <Banner text={bannerText} />}
         <nav>
-          <a href="#menu" onClick={() => setOpen(false)}>Menu</a>
-          <a href="#location" onClick={() => setOpen(false)}>Location</a>
-          <a href="/" className="logo" onClick={() => setOpen(false)}>
+          <Link to='/#menu' onClick={handleClick}>Menu</Link>
+          <Link to='/#location' onClick={handleClick}>Location</Link>
+          <Link to='/' className='logo' onClick={handleClick}>
             <Img fluid={data.logo.childImageSharp.fluid} alt="Frothy's Logo" />
-            <h1>Frothy'<span>s</span></h1></a>
-          <a href="#blog" onClick={() => setOpen(false)}>Blog</a>
-          <a href="#contact" onClick={() => setOpen(false)}>Contact</a>
-          <div className="bgOverlay">
-            <div className="innerborder">
-            </div>
+            <h1>Frothy'<span>s</span></h1></Link>
+          <Link to='/#blog' onClick={handleClick}>Blog</Link>
+          <Link to='/#contact' onClick={handleClick}>Contact</Link>
+          <div className='bgOverlay'>
+            <div className='innerborder' />
           </div>
-          <a href="#" className="btn white">Delivery Company</a>
-          <a href="#" className="btn black">Delivery Company</a>
+          <a href='#' className='btn white'>Delivery Company</a>
+          <a href='#' className='btn black'>Delivery Company</a>
           <SocialIcons />
-          <Hamburger toggled={isOpen} toggle={setOpen} size={44} duration={0.2} label="Show menu" rounded color={isOpen? 'var(--white)' : 'var(--pink)'}/>
+          <Hamburger toggled={isOpen} toggle={setOpen} size={44} duration={0.2} label='Show menu' rounded color={isOpen ? 'var(--white)' : 'var(--pink)'} />
         </nav>
       </HeaderStyles>
     </>
@@ -130,7 +133,7 @@ const HeaderStyles = styled.header`
         width: 6rem;
         height: 6.2rem;
       }
-      
+
       /* Creates text "Frothy's" span used for spacing the "s" at end of Frothy's */
       h1 {
         margin-top: 3px;
@@ -156,7 +159,7 @@ const HeaderStyles = styled.header`
 
     .hamburger-react {
       z-index: 6;
-      top: 1rem; 
+      top: 1rem;
       position: absolute !important;
       right: 10vw;
     }
@@ -220,7 +223,7 @@ const HeaderStyles = styled.header`
 
         &::before {
           content: '';
-          
+
           background-repeat: repeat;
           background-size: 150px;
           position: absolute;
@@ -232,7 +235,7 @@ const HeaderStyles = styled.header`
         }
 
         .innerborder {
-          
+
           position: absolute;
           top: 35px;
           bottom: 35px;
@@ -321,7 +324,7 @@ const HeaderStyles = styled.header`
       }
     }
   }
-`;
+`
 
 export const query = graphql`
   query {

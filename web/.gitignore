@@ -70,3 +70,6 @@ yarn.lock
 # Secrets
 .env*
 
+
+# Local Netlify folder
+.netlify

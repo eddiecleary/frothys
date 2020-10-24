@@ -56,33 +56,33 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Roboto`,
+            family: `Roboto`
           }
-        ],
-      },
+        ]
+      }
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `src`,
-        path: `${__dirname}/src/`,
-      },
+        path: `${__dirname}/src/`
+      }
     },
     {
       resolve: `@ccalamos/gatsby-source-googlemaps-static`,
       options: {
-          key: process.env.GOOGLE_MAPS_STATIC_API_KEY,
-          center: `New York, NY`,
-          zoom: `17`,
-          scale: `2`,
-          markers: 
+        key: process.env.GOOGLE_MAPS_STATIC_API_KEY,
+        center: `New York, NY`,
+        zoom: `17`,
+        scale: `2`,
+        markers:
             [
               {
                 location: `New York, NY`,
-                color: `red`,
+                color: `red`
               }
             ]
-      },
-  },
+      }
+    }
   ]
 }

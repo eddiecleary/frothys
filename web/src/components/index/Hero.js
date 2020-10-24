@@ -65,7 +65,7 @@ const StyledHero = styled.section`
     flex-direction: column;
     justify-content: space-around;
     /* iphone 5 */
-    align-items: center; 
+    align-items: center;
     padding-top: 2rem;
 
     a {
@@ -95,7 +95,7 @@ const StyledHero = styled.section`
     .gatsby-image-wrapper {
       flex-basis: 50%;
       max-width: 229px;
-      
+
       img {
         max-height: 360px;
       }
@@ -123,7 +123,7 @@ const StyledHero = styled.section`
       flex-basis: 50%;
       width: 300px;
       max-width: 300px;
-      
+
       img {
         height: 470px;
         max-height: 470px;

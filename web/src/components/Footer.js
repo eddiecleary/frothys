@@ -1,38 +1,42 @@
-import React from 'react';
-import styled from 'styled-components';
-import SocialIcons from '../components/SocialIcons';
-import Hours from './Hours';
-import Address from './Address';
-import bg from '../assets/images/fruits-bg.svg';
-import { graphql, useStaticQuery } from 'gatsby';
-import Img from 'gatsby-image';
+import React from 'react'
+import styled from 'styled-components'
+import SocialIcons from '../components/SocialIcons'
+import Hours from './Hours'
+import Address from './Address'
+import bg from '../assets/images/fruits-bg.svg'
+import {graphql, useStaticQuery} from 'gatsby'
+import Img from 'gatsby-image'
+import BackBtn from './BackBtn'
 
 export default function Footer () {
-  const data = useStaticQuery(query);
+  const data = useStaticQuery(query)
   return (
-    <StyledFooter id="contact">
-      <div className="footerbg"></div>
-      <div className="innerborder">
-        <div className="content">
-          <div className="toprow">
-            <a href="#" className="logo">
-              <Img fluid={data.logo.childImageSharp.fluid} />
-              <h1>Frothy's</h1>
-            </a>
-            <SocialIcons color="var(--white)"/>
-          </div>
-          <div className="midrow">
-            <Hours />
-            <Address />
-          </div>
-          <div className="lowrow">
-            <p>Icons from <a href="https://www.flaticon.com/authors/monkik">monkik</a> @ <a href="https://www.flaticon.com">flaticon.com</a></p>
-            <p>Icons from <a href="https://www.flaticon.com/authors/freepik">freepik</a> @ <a href="https://www.flaticon.com">flaticon.com</a></p>
-            <p className="copyright">Copyright Eddie Cleary &copy; {new Date().getFullYear()}</p>
+    <>
+      <StyledFooter id='contact'>
+        <div className='footerbg' />
+        <div className='innerborder'>
+          <div className='content'>
+            <div className='toprow'>
+              <a href='#' className='logo'>
+                <Img fluid={data.logo.childImageSharp.fluid} />
+                <h1>Frothy's</h1>
+              </a>
+              <SocialIcons color='var(--white)' />
+            </div>
+            <div className='midrow'>
+              <Hours />
+              <Address />
+            </div>
+            <div className='lowrow'>
+              <p>Icons from <a href='https://www.flaticon.com/authors/monkik'>monkik</a> @ <a href='https://www.flaticon.com'>flaticon.com</a></p>
+              <p>Icons from <a href='https://www.flaticon.com/authors/freepik'>freepik</a> @ <a href='https://www.flaticon.com'>flaticon.com</a></p>
+              <p className='copyright'>Copyright Eddie Cleary &copy; {new Date().getFullYear()}</p>
+            </div>
           </div>
         </div>
-      </div>
-    </StyledFooter>
+      </StyledFooter>
+      <BackBtn />
+    </>
   )
 }
 
@@ -121,9 +125,9 @@ const StyledFooter = styled.footer`
       margin: 0 auto;
       top: 0;
       bottom: 3.5rem;
-      width: 89%; 
+      width: 89%;
       /* These 2 values coincide with the Layout component width */
-      max-width: 80rem;        
+      max-width: 80rem;
       border: 3px dashed white;
       border-top: 0;
       background-color: var(--black);
@@ -143,7 +147,7 @@ const StyledFooter = styled.footer`
           .logo {
             /* transform: initial; */
           }
-          
+
           .social-icons {
             margin: 0;
           }
@@ -159,7 +163,7 @@ const StyledFooter = styled.footer`
           }
         }
       }
-    }   
+    }
   }
 
   @media (min-width: 992px) {

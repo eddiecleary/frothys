@@ -1,9 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
+import {createGlobalStyle} from 'styled-components'
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    /* --pink: #ef476f; */
-    /* --pink: #AD0950; */
     --pink: #cc3366;
     --yellow: #ffd166;
     --green: #00cc66;
@@ -11,7 +9,7 @@ const GlobalStyles = createGlobalStyle`
     --darkblue: #073b4c;
     --red: #cc3333;
     --black: #000;
-    --white: #fff;   
+    --white: #fff;
   }
   html {
     font-size: 62.5%;
@@ -84,6 +82,6 @@ const GlobalStyles = createGlobalStyle`
   img {
     max-width: 100%;
   }
-`;
+`
 
-export default GlobalStyles;
+export default GlobalStyles

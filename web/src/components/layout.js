@@ -1,13 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import 'normalize.css';
-import Header from './Header';
-import Footer from './Footer';
-import GlobalStyles from '../styles/GlobalStyles';
-import Typography from '../styles/Typography';
-import bg from '../assets/images/fruits-bg.svg';
+import React from 'react'
+import styled from 'styled-components'
+import 'normalize.css'
+import Header from './Header'
+import Footer from './Footer'
+import GlobalStyles from '../styles/GlobalStyles'
+import Typography from '../styles/Typography'
+import bg from '../assets/images/fruits-bg.svg'
 
-export default function Layout({ children }) {
+export default function Layout ({children}) {
   return (
     <>
       <GlobalStyles />
@@ -38,7 +38,7 @@ const SiteContainer = styled.div`
     overflow: hidden;
     z-index: 7;
     box-sizing: border-box;
-    
+
     &::before {
       content: '';
       background-image: url(${bg});
@@ -62,4 +62,4 @@ const SiteContainer = styled.div`
   @media (min-width: 1200px) {
     max-width: 105rem;
   }
-`;
+`
