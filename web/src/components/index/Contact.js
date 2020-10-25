@@ -16,7 +16,7 @@ export default function Contact() {
   const mapImgSources = [
     {
       ...mapMobile.nodes[0].childFile.childImageSharp.fluid,
-      media: '(max-width: 767.99px)'
+      media: '(max-width: 767px)'
     },
     {
       ...mapDesktop.nodes[0].childFile.childImageSharp.fluid,
@@ -93,7 +93,7 @@ const StyledContactInfo = styled.section`
       flex-direction: column;
       align-items: center;
       padding-top: 2rem;
-    
+
       a {
         display: inline-block;
         max-width: max-content;
@@ -138,13 +138,13 @@ const StyledContactInfo = styled.section`
           address {
             color: var(--white);
           }
-        }  
-      }   
+        }
+      }
     }
 
     .bottom {
       padding-bottom: 3rem;
-      
+
       article {
         margin-top: 0;
 
@@ -196,7 +196,7 @@ export const query = graphql`
       nodes {
         childFile {
           childImageSharp {
-            fluid(quality:70,maxWidth:200) {
+            fluid(quality:80,maxWidth:500) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }
@@ -207,7 +207,7 @@ export const query = graphql`
       nodes {
         childFile {
           childImageSharp {
-            fluid(quality:50,maxWidth:400) {
+            fluid(quality:70,maxWidth:900) {
               ...GatsbyImageSharpFluid_withWebp_tracedSVG
             }
           }

@@ -94,7 +94,7 @@ const MenuStyles = styled.article`
 
       .dots {
         flex: 1;
-        border-bottom: 2px dashed var(--black);
+        border-bottom: 2px dotted var(--black);
         margin-left: 1rem;
       }
 

@@ -18,39 +18,38 @@ export default function Fruits() {
       media: '(min-width: 768px)'
     }
   ];
-  
+
   let fruitsImgRef = useRef();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
     gsap.core.globals("ScrollTrigger", ScrollTrigger)
-    
+
     ScrollTrigger.matchMedia({
-      "(min-width: 768px)": function() {
+      "(min-width: 768px) and (max-width: 991px)": function() {
         gsap.to(
           fruitsImgRef, {
             x: -860,
             scrollTrigger: {
               trigger: fruitsImgRef,
               start: "center 70%",
-              end: "bottom 25%",
-              toggleActions: "restart none none none",
-              scrub: true,
-              marks: true,
+              end: "bottom 20%",
+              toggleActions: "restart complete reverse pause",
+              scrub: 1,
             }
           }
         )
       },
-      "(min-width: 992px)": function() {
+      "(min-width: 992px) and (max-width: 1199px) ": function() {
         gsap.to(
           fruitsImgRef, {
             x: -680,
             scrollTrigger: {
               trigger: fruitsImgRef,
-              start: "center 50%",
+              start: "center 70%",
               end: "bottom 20%",
-              toggleActions: "restart none none none",
-              scrub: true,
+              toggleActions: "restart complete reverse pause",
+              scrub: 1,
             }
           }
         )
@@ -61,15 +60,15 @@ export default function Fruits() {
             x: -520,
             scrollTrigger: {
               trigger: fruitsImgRef,
-              start: "center 40%",
-              end: "bottom 20%",
-              toggleActions: "restart none none none",
-              scrub: true,
+              start: "center 90%",
+              end: "center 10%",
+              toggleActions: "restart complete play pause",
+              scrub: 1,
             }
           }
         )
       }
-    });    
+    });
   }, []);
 
 
@@ -90,7 +89,7 @@ const StyledFruits = styled.section`
 
   h2 {
     margin-bottom: 4rem;
-  }  
+  }
 
   .gatsby-image-wrapper {
     margin: 0 auto;
