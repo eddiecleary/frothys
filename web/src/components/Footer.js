@@ -6,7 +6,7 @@ import Address from './Address'
 import bg from '../assets/images/fruits-bg.svg'
 import {graphql, useStaticQuery} from 'gatsby'
 import Img from 'gatsby-image'
-import BackBtn from './BackBtn'
+// import BackBtn from './BackBtn'
 
 export default function Footer () {
   const data = useStaticQuery(query)
@@ -35,7 +35,7 @@ export default function Footer () {
           </div>
         </div>
       </StyledFooter>
-      <BackBtn />
+      {/* <BackBtn /> */}
     </>
   )
 }
